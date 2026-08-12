@@ -3434,3 +3434,265 @@ body.products-page .contact-dock-whatsapp {
     animation: none !important;
   }
 }
+
+/* =========================================================
+   CLASSIC MOBILE NAV + FURNITURE-FIRST HERO — 2026-08-12
+   Refines only mobile/tablet presentation. Desktop unchanged.
+   ========================================================= */
+@media (max-width: 1050px) {
+  /* A quieter, classic navigation drawer. */
+  body.mobile-menu-open::before {
+    background: rgba(7,27,46,.20);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .menu-toggle.is-open {
+    color: #102a43;
+    border-color: rgba(16,42,67,.16);
+    background: #fffdf9;
+    box-shadow: 0 8px 22px rgba(7,27,46,.10);
+    transform: none;
+  }
+  .menu-toggle.is-open span { background: #102a43; }
+
+  .main-nav.is-open {
+    top: calc(100% + 8px) !important;
+    right: 14px !important;
+    left: auto !important;
+    width: min(340px, calc(100vw - 28px));
+    max-height: calc(100dvh - 118px);
+    gap: 0 !important;
+    padding: 8px 12px 10px !important;
+    border: 1px solid rgba(16,42,67,.12) !important;
+    border-radius: 16px;
+    background: rgba(255,253,249,.985);
+    box-shadow: 0 22px 50px rgba(7,27,46,.16), 0 4px 14px rgba(7,27,46,.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: sankalpClassicMenuIn .22s ease-out both;
+  }
+
+  .main-nav.is-open::before {
+    content: "SANKALP  /  MENU";
+    padding: 8px 9px 10px;
+    color: #8a6a55;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(16,42,67,.08);
+  }
+
+  .main-nav.is-open::after { display: none; content: none; }
+
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a {
+    position: relative;
+    min-height: 50px;
+    gap: 0;
+    padding: 0 30px 0 10px !important;
+    border: 0;
+    border-bottom: 1px solid rgba(16,42,67,.075);
+    border-radius: 0;
+    color: #24394c;
+    background: transparent;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 750;
+    letter-spacing: .005em;
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: color .16s ease, padding-left .16s ease, background .16s ease;
+  }
+
+  .main-nav.is-open a:last-of-type { border-bottom: 0; }
+  .main-nav.is-open a::before { display: none; content: none; }
+  .main-nav.is-open a::after {
+    content: "›";
+    position: absolute !important;
+    right: 10px;
+    top: 50%;
+    width: auto !important;
+    height: auto !important;
+    margin: 0;
+    color: rgba(16,42,67,.40);
+    background: none !important;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1;
+    transform: translateY(-52%);
+  }
+
+  .main-nav.is-open a:hover,
+  .main-nav.is-open a:focus-visible {
+    color: #102a43;
+    padding-left: 14px !important;
+    background: rgba(247,240,230,.58);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .main-nav.is-open a:hover::after,
+  .main-nav.is-open a:focus-visible::after {
+    color: #e96325;
+    transform: translateY(-52%);
+  }
+
+  .main-nav.is-open a.active {
+    color: #102a43;
+    border-color: rgba(16,42,67,.075);
+    background: linear-gradient(90deg, rgba(233,99,37,.09), rgba(247,240,230,.42));
+    box-shadow: inset 3px 0 0 #e96325;
+  }
+  .main-nav.is-open a.active::after { color: #e96325; }
+
+  @keyframes sankalpClassicMenuIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-width: 760px) {
+  .main-nav.is-open {
+    right: 12px !important;
+    width: min(330px, calc(100vw - 24px));
+    padding: 7px 11px 9px !important;
+    border-radius: 15px;
+  }
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a {
+    min-height: 48px;
+    padding-inline: 10px 28px !important;
+    font-size: 12.5px;
+  }
+
+  /* Remove the blurred photo card and introduce an actual furniture cue. */
+  .home-page .hero-copy {
+    margin: -10px -4px 0;
+    padding: 23px 18px 25px;
+    overflow: hidden;
+    border: 1px solid rgba(16,42,67,.07);
+    border-radius: 20px;
+    background: linear-gradient(145deg, #fffaf4 0%, #f7ede1 100%);
+    box-shadow: 0 16px 38px rgba(7,27,46,.065);
+  }
+  .home-page .hero-copy::before { display: none !important; content: none !important; }
+  .home-page .hero-copy::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      radial-gradient(circle at 92% 12%, rgba(233,99,37,.12), transparent 24%),
+      linear-gradient(180deg, rgba(255,255,255,.36), transparent 56%);
+  }
+
+  .home-page .hero-furniture-cue {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    align-items: center;
+    min-height: 118px;
+    margin: 19px 0 20px;
+    overflow: hidden;
+    border: 1px solid rgba(16,42,67,.085);
+    border-radius: 15px;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.70), rgba(238,225,209,.72));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
+    pointer-events: none;
+  }
+
+  .home-page .hero-furniture-cue::before {
+    content: "";
+    position: absolute;
+    right: -28px;
+    bottom: -58px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(16,42,67,.07);
+    border-radius: 50%;
+  }
+
+  .home-page .hero-furniture-cue-copy {
+    position: relative;
+    z-index: 3;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 8px 16px 15px;
+    border-right: 1px solid rgba(16,42,67,.07);
+  }
+  .home-page .hero-furniture-cue-copy strong {
+    color: #102a43;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .home-page .hero-furniture-cue-copy span {
+    margin-top: 7px;
+    color: #75685e;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: .035em;
+  }
+
+  .home-page .hero-furniture-cue-stage {
+    position: relative;
+    z-index: 2;
+    height: 118px;
+    overflow: hidden;
+  }
+  .home-page .hero-furniture-cue-stage img {
+    position: absolute;
+    bottom: -5px;
+    display: block;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 9px 9px rgba(7,27,46,.14));
+    opacity: .96;
+  }
+  .home-page .hero-furniture-cue-main {
+    left: 35%;
+    width: 74px;
+    height: 112px;
+    transform: none;
+  }
+  .home-page .hero-furniture-cue-secondary {
+    left: 4%;
+    width: 61px;
+    height: 96px;
+    transform: none;
+  }
+  .home-page .hero-furniture-cue-third {
+    right: 3%;
+    width: 66px;
+    height: 103px;
+  }
+
+  .home-page .hero-actions { margin-top: 0; }
+}
+
+@media (max-width: 390px) {
+  .main-nav.is-open {
+    right: 10px !important;
+    width: min(318px, calc(100vw - 20px));
+    padding: 6px 10px 8px !important;
+    border-radius: 14px;
+  }
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a { min-height: 46px; font-size: 12px; }
+  .home-page .hero-furniture-cue { grid-template-columns: 105px 1fr; min-height: 110px; }
+  .home-page .hero-furniture-cue-stage { height: 110px; }
+  .home-page .hero-furniture-cue-main { width: 68px; height: 104px; }
+  .home-page .hero-furniture-cue-secondary { width: 56px; height: 90px; }
+  .home-page .hero-furniture-cue-third { width: 61px; height: 96px; }
+}
