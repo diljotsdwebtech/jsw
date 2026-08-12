@@ -3816,3 +3816,215 @@ body.products-page .contact-dock-whatsapp {
         rgba(247,237,225,.30));
   }
 }
+
+
+/* =========================================================
+   FINAL MOBILE OWNER + FURNITURE HERO — 2026-08-12
+   Mobile only. Desktop/laptop layout remains unchanged.
+   ========================================================= */
+.hero-mobile-proof { display: none; }
+
+@media (max-width: 760px) {
+  .home-page .hero {
+    padding: 22px 0 0;
+    background: linear-gradient(180deg, #f8f1e8 0%, #fffdf9 100%);
+  }
+
+  .home-page .hero-inner {
+    width: min(100% - 24px, 680px);
+    margin-inline: auto;
+    padding: 25px 18px 0;
+    overflow: hidden;
+    border: 1px solid rgba(16,42,67,.09);
+    border-radius: 25px;
+    background:
+      radial-gradient(circle at 92% 6%, rgba(233,99,37,.10), transparent 25%),
+      linear-gradient(145deg, #fffaf4 0%, #f7ede1 100%);
+    box-shadow: 0 18px 44px rgba(7,27,46,.075);
+  }
+
+  .home-page .hero-copy {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .home-page .hero-copy::before,
+  .home-page .hero-copy::after,
+  .home-page .hero-furniture-cue {
+    display: none !important;
+    content: none !important;
+  }
+
+  .home-page .hero-company-name {
+    margin-bottom: 16px;
+  }
+
+  /* Restore the established SANKALP hero typeface. */
+  .home-page .hero-copy h1 {
+    max-width: 530px;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: clamp(43px, 12.6vw, 57px);
+    font-weight: 700;
+    line-height: .96;
+    letter-spacing: -.043em;
+    text-wrap: balance;
+  }
+
+  .home-page .hero-copy h1 em {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -.037em;
+  }
+
+  .home-page .hero-copy > p {
+    max-width: 520px;
+    margin: 18px 0 20px;
+    color: #485867;
+    font-size: 13px;
+    line-height: 1.62;
+  }
+
+  .home-page .hero-actions {
+    display: block;
+    margin: 0;
+  }
+
+  .home-page .hero-actions .button-primary {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 4px;
+    box-shadow: 0 10px 22px rgba(16,42,67,.12);
+  }
+
+  .home-page .hero-actions .button-secondary {
+    display: none;
+  }
+
+  .home-page .hero-mobile-proof {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 16px 0 0;
+    padding: 13px 0 11px;
+    border-top: 1px solid rgba(16,42,67,.09);
+    border-bottom: 1px solid rgba(16,42,67,.09);
+  }
+
+  .home-page .hero-mobile-proof div {
+    min-width: 0;
+    padding: 0 9px;
+  }
+
+  .home-page .hero-mobile-proof div:first-child { padding-left: 0; }
+  .home-page .hero-mobile-proof div + div { border-left: 1px solid rgba(16,42,67,.10); }
+
+  .home-page .hero-mobile-proof strong,
+  .home-page .hero-mobile-proof span { display: block; }
+
+  .home-page .hero-mobile-proof strong {
+    color: #e96325;
+    font: 700 18px/1 "Playfair Display", Georgia, serif;
+    letter-spacing: -.02em;
+  }
+
+  .home-page .hero-mobile-proof span {
+    margin-top: 5px;
+    color: #53616c;
+    font-size: 6.8px;
+    font-weight: 850;
+    line-height: 1.35;
+    letter-spacing: .055em;
+    text-transform: uppercase;
+  }
+
+  /* One integrated visual: product behind, owner in front. */
+  .home-page .hero-mobile-visual {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: calc(100% + 36px);
+    height: clamp(285px, 78vw, 360px);
+    margin: 19px -18px 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background:
+      radial-gradient(circle at 78% 30%, rgba(233,99,37,.13), transparent 28%),
+      linear-gradient(180deg, rgba(255,253,249,.1) 0%, rgba(16,42,67,.05) 100%);
+    box-shadow: none;
+  }
+
+  /* Premium almirah scene sits behind the owner portrait. */
+  .home-page .hero-mobile-visual::before {
+    content: "";
+    position: absolute;
+    left: -4%;
+    bottom: 7%;
+    z-index: 1;
+    width: 58%;
+    height: 83%;
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 0 20px 20px 0;
+    background-image: url('assets/images/products/ai/01-studio.webp');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    box-shadow: 0 16px 32px rgba(7,27,46,.12);
+    transform: rotate(-1.5deg);
+  }
+
+  /* Owner portrait becomes the leading brand image. */
+  .home-page .hero-mobile-visual::after {
+    content: "";
+    position: absolute;
+    right: -4%;
+    bottom: 0;
+    z-index: 2;
+    width: 66%;
+    height: 94%;
+    border: 1px solid rgba(255,255,255,.72);
+    border-radius: 24px 0 0 0;
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,.03) 0%, rgba(7,27,46,.10) 100%),
+      url('assets/images/owner-portrait-close.webp');
+    background-repeat: no-repeat;
+    background-position: center, 43% 48%;
+    background-size: 100% 100%, cover;
+    box-shadow: -14px 14px 34px rgba(7,27,46,.16);
+  }
+
+  .home-page .hero-mobile-visual {
+    background-color: transparent;
+    background-image:
+      linear-gradient(90deg, rgba(255,250,244,.62), transparent 30%),
+      linear-gradient(180deg, transparent 72%, rgba(7,27,46,.08));
+    background-position: center;
+    background-size: 100% 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-page .hero { padding-top: 16px; }
+  .home-page .hero-inner { width: calc(100% - 18px); padding: 22px 15px 0; border-radius: 22px; }
+  .home-page .hero-copy h1 { font-size: clamp(40px, 12.4vw, 50px); }
+  .home-page .hero-copy > p { font-size: 12.5px; }
+  .home-page .hero-mobile-proof div { padding-inline: 7px; }
+  .home-page .hero-mobile-proof strong { font-size: 17px; }
+  .home-page .hero-mobile-proof span { font-size: 6.3px; }
+  .home-page .hero-mobile-visual {
+    width: calc(100% + 30px);
+    height: clamp(270px, 80vw, 325px);
+    margin: 17px -15px 0;
+  }
+  .home-page .hero-mobile-visual::before { width: 60%; height: 80%; }
+  .home-page .hero-mobile-visual::after { width: 68%; height: 93%; }
+}
