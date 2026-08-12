@@ -2669,11 +2669,13 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
 }
 
 
+.hero-furniture-cue { display: none; }
+
 /* =========================================================
    SANKALP Mobile UX refinement — 2026-08-12
    Mobile-only ticker, hero, ribbons and floating actions.
    Desktop layouts remain unchanged except the intentionally
-   relocated/redesigned Home promotion panel.
+   relocated Home achievement panel.
    ========================================================= */
 
 /* Desktop-safe wrappers created by script.js. */
@@ -2685,84 +2687,12 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
 .mobile-ribbon-group { display: contents; }
 .mobile-ribbon-group[aria-hidden="true"] { display: none; }
 
-/* Home promotion panel now sits after the three collection cards. */
-.home-promo {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.2fr .95fr auto;
-  align-items: center;
-  gap: 34px;
-  margin-top: 28px;
-  padding: 34px 36px;
-  border: 1px solid rgba(16,42,67,.08);
-  border-radius: 22px;
-  color: #fff;
-  background:
-    radial-gradient(circle at 8% 0%, rgba(233,99,37,.27), transparent 38%),
-    linear-gradient(125deg, #071b2e 0%, #102a43 58%, #173e5d 100%);
-  box-shadow: 0 24px 58px rgba(7,27,46,.18);
-}
-.home-promo::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  right: -70px;
-  top: -95px;
-  width: 260px;
-  height: 260px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 50%;
-  box-shadow: 0 0 0 28px rgba(255,255,255,.025), 0 0 0 56px rgba(255,255,255,.018);
-}
-.home-promo-kicker {
-  display: block;
-  margin-bottom: 11px;
-  color: #ffb287;
-  font-size: 8px;
-  font-weight: 900;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-.home-promo-heading { display: flex; align-items: center; gap: 16px; }
-.home-promo-heading > strong { color: #ff9a64; font: 600 54px/.9 Georgia,serif; letter-spacing: -.05em; }
-.home-promo-heading h3 { color: #fff; font-size: 23px; line-height: 1.03; letter-spacing: -.02em; }
-.home-promo-copy p { max-width: 560px; margin: 15px 0 0; color: rgba(255,255,255,.65); font-size: 11.5px; line-height: 1.65; }
-.home-promo-proof { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(255,255,255,.055); backdrop-filter: blur(7px); }
-.home-promo-proof > div { min-width: 0; padding: 16px 13px; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
-.home-promo-proof > div:last-child { border-right: 0; }
-.home-promo-proof strong { display: block; color: #fff; font: 700 18px/1 Manrope,Arial,sans-serif; }
-.home-promo-proof span { display: block; margin-top: 6px; color: rgba(255,255,255,.55); font-size: 7px; font-weight: 800; line-height: 1.35; letter-spacing: .08em; text-transform: uppercase; }
-.home-promo-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  min-height: 48px;
-  padding: 0 18px;
-  border-radius: 12px;
-  color: #102a43;
-  background: #fff;
-  box-shadow: 0 13px 30px rgba(0,0,0,.15);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.home-promo-cta:hover { transform: translateY(-2px); box-shadow: 0 17px 36px rgba(0,0,0,.2); }
-.home-promo-cta svg { width: 18px; height: 18px; }
+/* Original Home achievement panel is relocated below the three collection cards. */
+.home-achievements-relocated { margin-top: 26px; }
 
 @keyframes sankalpMobileMarquee {
   from { transform: translate3d(0,0,0); }
   to { transform: translate3d(-50%,0,0); }
-}
-
-@media (max-width: 900px) {
-  .home-promo { grid-template-columns: 1fr; gap: 20px; }
-  .home-promo-cta { justify-self: start; }
 }
 
 @media (max-width: 760px) {
@@ -2875,7 +2805,7 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
   .infra-hero-badges .mobile-ribbon-group[aria-hidden="true"] { gap: 8px; padding-right: 8px; }
   .infra-hero-badges .mobile-ribbon-group > span { flex: 0 0 auto; }
 
-  /* 3) Home hero — subtle blurred product visual behind the slogan, clear main visual stays below. */
+  /* 3) Home hero — mobile-only furniture identity behind the slogan; main owner visual stays below. */
   .home-page .hero { background-image: none !important; background-color: var(--cream); }
   .home-page .hero-copy {
     position: relative;
@@ -2896,30 +2826,54 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
     background-repeat: no-repeat;
     background-position: 73% center;
     background-size: auto 118%;
-    filter: blur(13px) saturate(.82);
+    filter: blur(14px) saturate(.76);
     transform: scale(1.08);
-    opacity: .29;
+    opacity: .22;
   }
   .home-page .hero-copy::after {
     content: "";
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(115deg,rgba(247,240,230,.95) 0%,rgba(247,240,230,.82) 58%,rgba(255,253,249,.7) 100%);
+    background: linear-gradient(108deg,rgba(247,240,230,.97) 0%,rgba(247,240,230,.88) 56%,rgba(255,253,249,.66) 100%);
+  }
+  .home-page .hero-copy > :not(.hero-furniture-cue) { position: relative; z-index: 2; }
+  .home-page .hero-furniture-cue {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+  }
+  .home-page .hero-furniture-cue img {
+    position: absolute;
+    display: block;
+    object-fit: contain;
+    object-position: center bottom;
+    user-select: none;
+  }
+  .home-page .hero-furniture-cue-main {
+    right: -18px;
+    bottom: -18px;
+    width: 142px;
+    height: 218px;
+    opacity: .18;
+    filter: saturate(.74) contrast(.96) drop-shadow(0 12px 18px rgba(7,27,46,.12));
+    transform: rotate(1.5deg);
+  }
+  .home-page .hero-furniture-cue-secondary {
+    right: 82px;
+    bottom: -19px;
+    width: 84px;
+    height: 142px;
+    opacity: .075;
+    filter: saturate(.7);
+    transform: rotate(-2deg);
   }
   .home-page .hero-mobile-visual { margin-top: 24px; }
 
-  /* 4) Premium Home promotion panel after collection cards. */
-  .home-promo { margin-top: 18px; padding: 25px 21px; gap: 19px; border-radius: 18px; }
-  .home-promo-heading { gap: 13px; }
-  .home-promo-heading > strong { font-size: 48px; }
-  .home-promo-heading h3 { font-size: 20px; }
-  .home-promo-copy p { font-size: 11px; }
-  .home-promo-proof { grid-template-columns: repeat(3,1fr); }
-  .home-promo-proof > div { padding: 13px 7px; }
-  .home-promo-proof strong { font-size: 16px; }
-  .home-promo-proof span { font-size: 6.4px; }
-  .home-promo-cta { width: 100%; justify-self: stretch; }
+  /* 4) Original achievement/promotion box — style preserved, position moved only. */
+  .home-achievements-relocated { margin-top: 18px; }
 
   /* 6) More effective mobile floating quick actions. */
   body .contact-dock,
@@ -3013,4 +2967,470 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
 @media (max-width: 760px) {
   .home-page .hero-copy::before { opacity: .64; filter: blur(12px) saturate(1.05); }
   .home-page .hero-copy::after { background: linear-gradient(115deg,rgba(247,240,230,.77) 0%,rgba(247,240,230,.60) 58%,rgba(255,253,249,.57) 100%); }
+}
+
+/* =========================================================
+   FINAL FLOATING ACTION DESIGN — ROUND ICON BUTTONS
+   Shared across Home, Products, Infrastructure, About, Contact
+   ========================================================= */
+body .contact-dock,
+body.products-page .contact-dock {
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  gap: 12px;
+  align-items: center;
+}
+
+body .contact-dock-item,
+body.products-page .contact-dock-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 56px;
+  width: 56px;
+  min-width: 56px;
+  max-width: 56px;
+  height: 56px;
+  min-height: 56px;
+  padding: 0;
+  gap: 0;
+  overflow: visible;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.38),
+    0 9px 24px rgba(7,27,46,.18),
+    0 2px 7px rgba(7,27,46,.11);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+body .contact-dock-item::before,
+body.products-page .contact-dock-item::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+body .contact-dock-item:hover,
+body .contact-dock-item:focus-visible,
+body.products-page .contact-dock-item:hover,
+body.products-page .contact-dock-item:focus-visible {
+  transform: translateY(-3px) scale(1.045);
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.52),
+    0 13px 30px rgba(7,27,46,.22),
+    0 3px 9px rgba(7,27,46,.12);
+}
+
+body .contact-dock-item:active,
+body.products-page .contact-dock-item:active {
+  transform: translateY(0) scale(.94);
+}
+
+body .contact-dock-item svg,
+body.products-page .contact-dock-item svg {
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  color: currentColor;
+  filter: none;
+}
+
+body .contact-dock-whatsapp svg,
+body.products-page .contact-dock-whatsapp svg {
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  background: transparent;
+}
+
+/* Keep text for semantics but visually make the controls icon-only circles. */
+body .contact-dock-item > span,
+body.products-page .contact-dock-item > span {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body .contact-dock-location,
+body.products-page .contact-dock-location {
+  color: #fff;
+  background: linear-gradient(145deg,#173b5d,#0e2943);
+  border-color: rgba(255,255,255,.62);
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.38),
+    0 10px 25px rgba(16,42,67,.26),
+    0 2px 7px rgba(7,27,46,.12);
+}
+
+body .contact-dock-call,
+body.products-page .contact-dock-call {
+  color: #102a43;
+  background: linear-gradient(145deg,#fffdf9,#f3e8da);
+  border-color: rgba(16,42,67,.16);
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.42),
+    0 10px 25px rgba(16,42,67,.18),
+    0 2px 7px rgba(7,27,46,.10);
+}
+
+body .contact-dock-whatsapp,
+body.products-page .contact-dock-whatsapp {
+  color: #fff;
+  background: linear-gradient(145deg,#2bdc6a,#1fba55);
+  border-color: rgba(255,255,255,.72);
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.40),
+    0 10px 25px rgba(37,211,102,.28),
+    0 2px 7px rgba(7,27,46,.10);
+}
+
+@media (max-width: 760px) {
+  body .contact-dock,
+  body.products-page .contact-dock {
+    right: 13px;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    gap: 11px;
+  }
+
+  body .contact-dock-item,
+  body.products-page .contact-dock-item {
+    flex-basis: 54px;
+    width: 54px;
+    min-width: 54px;
+    max-width: 54px;
+    height: 54px;
+    min-height: 54px;
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  body .contact-dock-item svg,
+  body.products-page .contact-dock-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  body .contact-dock-whatsapp svg,
+  body.products-page .contact-dock-whatsapp svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 390px) {
+  body .contact-dock-item,
+  body.products-page .contact-dock-item {
+    flex-basis: 50px;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    height: 50px;
+    min-height: 50px;
+  }
+
+  body .contact-dock-item svg,
+  body.products-page .contact-dock-item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  body .contact-dock-whatsapp svg,
+  body.products-page .contact-dock-whatsapp svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* =========================================================
+   PREMIUM MOBILE NAVIGATION — 2026-08-12
+   Mobile/tablet only. Desktop navigation remains unchanged.
+   ========================================================= */
+@media (max-width: 1050px) {
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  body.mobile-menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 48;
+    background: rgba(7, 27, 46, .38);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: sankalpMenuBackdropIn .24s ease both;
+  }
+
+  .site-header {
+    z-index: 60;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 64;
+    flex: 0 0 auto;
+    transition:
+      transform .28s cubic-bezier(.2,.75,.25,1),
+      background .22s ease,
+      border-color .22s ease,
+      box-shadow .22s ease;
+  }
+
+  .menu-toggle.is-open {
+    color: #fff;
+    border-color: rgba(255,255,255,.28);
+    background: linear-gradient(145deg, #173b5d, #0b243b);
+    box-shadow:
+      0 0 0 5px rgba(16,42,67,.08),
+      0 10px 26px rgba(7,27,46,.20);
+    transform: rotate(90deg);
+  }
+
+  .menu-toggle.is-open span {
+    background: #fff;
+  }
+
+  .main-nav.is-open {
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: auto !important;
+    right: 14px !important;
+    z-index: 63;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px !important;
+    width: min(390px, calc(100vw - 28px));
+    max-height: calc(100dvh - 128px);
+    margin: 0 !important;
+    padding: 15px !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid rgba(16,42,67,.10) !important;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(233,99,37,.13), transparent 35%),
+      linear-gradient(155deg, rgba(255,255,255,.985), rgba(250,245,237,.975));
+    box-shadow:
+      0 30px 70px rgba(7,27,46,.24),
+      0 8px 22px rgba(7,27,46,.10),
+      inset 0 1px 0 rgba(255,255,255,.92);
+    backdrop-filter: blur(22px) saturate(1.08);
+    -webkit-backdrop-filter: blur(22px) saturate(1.08);
+    transform-origin: top right;
+    animation: sankalpMenuPanelIn .32s cubic-bezier(.18,.82,.24,1) both;
+  }
+
+  .main-nav.is-open::before {
+    content: "Explore SANKALP";
+    display: block;
+    padding: 6px 8px 8px;
+    color: #8a593b;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .main-nav.is-open::after {
+    content: "Style meets strength";
+    display: block;
+    margin-top: 3px;
+    padding: 10px 9px 4px;
+    border-top: 1px solid rgba(16,42,67,.08);
+    color: rgba(16,42,67,.52);
+    font: 600 10px/1.35 "Manrope", "Segoe UI", Arial, sans-serif;
+    letter-spacing: .055em;
+    text-transform: uppercase;
+  }
+
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 0 15px !important;
+    overflow: hidden;
+    border: 1px solid rgba(16,42,67,.075);
+    border-radius: 15px;
+    color: #22384b;
+    background: rgba(255,255,255,.62);
+    box-shadow: 0 3px 10px rgba(7,27,46,.025);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: .005em;
+    transform: translateY(7px);
+    opacity: 0;
+    animation: sankalpMenuItemIn .34s cubic-bezier(.2,.75,.25,1) forwards;
+    transition:
+      transform .18s ease,
+      color .18s ease,
+      background .18s ease,
+      border-color .18s ease,
+      box-shadow .18s ease;
+  }
+
+  .main-nav.is-open a:nth-of-type(1) { animation-delay: .055s; }
+  .main-nav.is-open a:nth-of-type(2) { animation-delay: .085s; }
+  .main-nav.is-open a:nth-of-type(3) { animation-delay: .115s; }
+  .main-nav.is-open a:nth-of-type(4) { animation-delay: .145s; }
+  .main-nav.is-open a:nth-of-type(5) { animation-delay: .175s; }
+
+  .main-nav.is-open a::before {
+    content: "";
+    position: static;
+    flex: 0 0 9px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid rgba(16,42,67,.32);
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .main-nav.is-open a::after {
+    content: "→";
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    margin-left: auto;
+    color: rgba(16,42,67,.42);
+    background: none !important;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1;
+    transform: translateX(0);
+    transition: transform .18s ease, color .18s ease;
+  }
+
+  .main-nav.is-open a:hover,
+  .main-nav.is-open a:focus-visible {
+    color: #102a43;
+    border-color: rgba(233,99,37,.22);
+    background: rgba(255,255,255,.93);
+    box-shadow: 0 8px 22px rgba(7,27,46,.08);
+    transform: translateY(-1px);
+  }
+
+  .main-nav.is-open a:hover::before,
+  .main-nav.is-open a:focus-visible::before {
+    border-color: #e96325;
+    background: #e96325;
+    box-shadow: 0 0 0 4px rgba(233,99,37,.10);
+  }
+
+  .main-nav.is-open a:hover::after,
+  .main-nav.is-open a:focus-visible::after {
+    color: #e96325;
+    transform: translateX(3px);
+  }
+
+  .main-nav.is-open a.active {
+    color: #fff;
+    border-color: rgba(255,255,255,.15);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(233,99,37,.26), transparent 42%),
+      linear-gradient(145deg, #173b5d, #0d2943);
+    box-shadow: 0 10px 25px rgba(16,42,67,.18);
+  }
+
+  .main-nav.is-open a.active::before {
+    border-color: #ffae7d;
+    background: #e96325;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.10);
+  }
+
+  .main-nav.is-open a.active::after {
+    color: #ffd0b5;
+  }
+
+  @keyframes sankalpMenuBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes sankalpMenuPanelIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(.965);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes sankalpMenuItemIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .main-nav.is-open {
+    right: 12px !important;
+    width: calc(100vw - 24px);
+    max-height: calc(100dvh - 112px);
+    padding: 13px !important;
+    border-radius: 21px;
+  }
+
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a {
+    min-height: 55px;
+    padding-inline: 14px !important;
+    border-radius: 14px;
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 390px) {
+  .main-nav.is-open {
+    right: 10px !important;
+    width: calc(100vw - 20px);
+    padding: 11px !important;
+    border-radius: 19px;
+  }
+
+  .main-nav.is-open a,
+  .home-page .main-nav.is-open a {
+    min-height: 51px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1050px) and (prefers-reduced-motion: reduce) {
+  body.mobile-menu-open::before,
+  .main-nav.is-open,
+  .main-nav.is-open a {
+    animation: none !important;
+  }
 }
