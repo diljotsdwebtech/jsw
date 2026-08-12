@@ -82,3 +82,93 @@
     border-radius:20px 20px 0 0;
   }
 }
+
+
+/* Mobile product image viewer — 2026-08-12 */
+.catalog-image-open-hint { display: none; }
+.catalog-image-lightbox[hidden] { display: none !important; }
+.catalog-image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: grid;
+  place-items: center;
+  padding: 56px 14px 48px;
+  background: rgba(4,14,24,.94);
+  backdrop-filter: blur(12px);
+}
+.catalog-image-lightbox-close {
+  position: fixed;
+  top: max(14px,env(safe-area-inset-top));
+  right: 14px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,.1);
+  font-size: 27px;
+  line-height: 1;
+}
+.catalog-image-lightbox-stage {
+  width: 100%;
+  height: min(78dvh,760px);
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pinch-zoom;
+}
+.catalog-image-lightbox-stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 13px;
+  background: #f8f5ef;
+  box-shadow: 0 24px 70px rgba(0,0,0,.3);
+  touch-action: pinch-zoom;
+}
+.catalog-image-lightbox-note {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px,env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.72);
+  font: 700 10px/1 Manrope,Arial,sans-serif;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+@media(max-width:720px){
+  .catalog-dialog-media { height: 47dvh; max-height: 420px; }
+  .catalog-gallery-stage { position: relative; cursor: zoom-in; min-height: 0; }
+  .catalog-gallery-stage > img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
+  .catalog-image-open-hint {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 0 9px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(7,27,46,.78);
+    box-shadow: 0 5px 14px rgba(7,27,46,.18);
+    font: 800 8px/1 Manrope,Arial,sans-serif;
+    letter-spacing: .03em;
+    pointer-events: none;
+  }
+  .catalog-image-lightbox.is-open { display: grid; }
+  .products-page.image-lightbox-open { overflow: hidden; }
+}
+
+@media(min-width:721px){
+  .catalog-image-lightbox { display: none !important; }
+}

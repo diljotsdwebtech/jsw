@@ -53,6 +53,51 @@
     else ribbon.prepend(address);
   });
 
+
+  /* Mobile top ribbon: contact details scroll continuously while social icons stay fixed. */
+  document.querySelectorAll(".client-ribbon-inner").forEach((ribbon) => {
+    if (ribbon.querySelector(".client-ribbon-marquee")) return;
+    const phone = ribbon.querySelector(".client-ribbon-phone");
+    const address = ribbon.querySelector(".client-ribbon-address");
+    const socials = ribbon.querySelector(".client-ribbon-socials");
+    if (!phone && !address) return;
+
+    const viewport = document.createElement("div");
+    viewport.className = "client-ribbon-marquee";
+    const track = document.createElement("div");
+    track.className = "client-ribbon-marquee-track";
+    const group = document.createElement("div");
+    group.className = "client-ribbon-marquee-group";
+    if (phone) group.appendChild(phone);
+    if (address) group.appendChild(address);
+    const clone = group.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    clone.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+    track.append(group, clone);
+    viewport.appendChild(track);
+    if (socials) ribbon.insertBefore(viewport, socials);
+    else ribbon.appendChild(viewport);
+  });
+
+  /* Convert narrow specification/category strips into smooth mobile tickers. */
+  [".rail-inner", ".about-intro-strip-inner", ".infra-step-rail-inner", ".infra-hero-badges"].forEach((selector) => {
+    document.querySelectorAll(selector).forEach((strip) => {
+      if (strip.querySelector(":scope > .mobile-ribbon-track")) return;
+      const children = Array.from(strip.children);
+      if (!children.length) return;
+      const track = document.createElement("div");
+      track.className = "mobile-ribbon-track";
+      const group = document.createElement("div");
+      group.className = "mobile-ribbon-group";
+      children.forEach((child) => group.appendChild(child));
+      const clone = group.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.querySelectorAll("a,button").forEach((item) => item.setAttribute("tabindex", "-1"));
+      track.append(group, clone);
+      strip.appendChild(track);
+    });
+  });
+
   /* Exact uploaded brand artwork is used unchanged. CSS controls only its display viewport. */
   document.querySelectorAll(".wordmark").forEach((wordmark) => {
     wordmark.classList.add("brand-image-lockup");

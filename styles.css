@@ -2667,3 +2667,350 @@ html body .site-header .brand-image-lockup .brand-sankalp-wordmark {
   html body .site-header .brand-image-lockup .brand-logo-mark { width: 40px !important; height: 40px !important; flex-basis: 40px !important; }
   html body .site-header .brand-image-lockup .brand-sankalp-wordmark { width: 137px !important; flex-basis: 137px !important; }
 }
+
+
+/* =========================================================
+   SANKALP Mobile UX refinement — 2026-08-12
+   Mobile-only ticker, hero, ribbons and floating actions.
+   Desktop layouts remain unchanged except the intentionally
+   relocated/redesigned Home promotion panel.
+   ========================================================= */
+
+/* Desktop-safe wrappers created by script.js. */
+.client-ribbon-marquee { display: flex; flex: 1 1 auto; min-width: 0; }
+.client-ribbon-marquee-track,
+.client-ribbon-marquee-group { display: contents; }
+.client-ribbon-marquee-group[aria-hidden="true"] { display: none; }
+.mobile-ribbon-track,
+.mobile-ribbon-group { display: contents; }
+.mobile-ribbon-group[aria-hidden="true"] { display: none; }
+
+/* Home promotion panel now sits after the three collection cards. */
+.home-promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr .95fr auto;
+  align-items: center;
+  gap: 34px;
+  margin-top: 28px;
+  padding: 34px 36px;
+  border: 1px solid rgba(16,42,67,.08);
+  border-radius: 22px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(233,99,37,.27), transparent 38%),
+    linear-gradient(125deg, #071b2e 0%, #102a43 58%, #173e5d 100%);
+  box-shadow: 0 24px 58px rgba(7,27,46,.18);
+}
+.home-promo::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -70px;
+  top: -95px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgba(255,255,255,.025), 0 0 0 56px rgba(255,255,255,.018);
+}
+.home-promo-kicker {
+  display: block;
+  margin-bottom: 11px;
+  color: #ffb287;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.home-promo-heading { display: flex; align-items: center; gap: 16px; }
+.home-promo-heading > strong { color: #ff9a64; font: 600 54px/.9 Georgia,serif; letter-spacing: -.05em; }
+.home-promo-heading h3 { color: #fff; font-size: 23px; line-height: 1.03; letter-spacing: -.02em; }
+.home-promo-copy p { max-width: 560px; margin: 15px 0 0; color: rgba(255,255,255,.65); font-size: 11.5px; line-height: 1.65; }
+.home-promo-proof { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(255,255,255,.055); backdrop-filter: blur(7px); }
+.home-promo-proof > div { min-width: 0; padding: 16px 13px; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
+.home-promo-proof > div:last-child { border-right: 0; }
+.home-promo-proof strong { display: block; color: #fff; font: 700 18px/1 Manrope,Arial,sans-serif; }
+.home-promo-proof span { display: block; margin-top: 6px; color: rgba(255,255,255,.55); font-size: 7px; font-weight: 800; line-height: 1.35; letter-spacing: .08em; text-transform: uppercase; }
+.home-promo-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  color: #102a43;
+  background: #fff;
+  box-shadow: 0 13px 30px rgba(0,0,0,.15);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.home-promo-cta:hover { transform: translateY(-2px); box-shadow: 0 17px 36px rgba(0,0,0,.2); }
+.home-promo-cta svg { width: 18px; height: 18px; }
+
+@keyframes sankalpMobileMarquee {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-50%,0,0); }
+}
+
+@media (max-width: 900px) {
+  .home-promo { grid-template-columns: 1fr; gap: 20px; }
+  .home-promo-cta { justify-self: start; }
+}
+
+@media (max-width: 760px) {
+  /* 1) Top contact bar — moving contact information, fixed social icons. */
+  .client-ribbon { overflow: hidden; }
+  .client-ribbon-inner {
+    width: 100%;
+    max-width: none;
+    min-height: 36px;
+    padding: 0 8px 0 0;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    align-items: center;
+    gap: 6px;
+  }
+  .client-ribbon-marquee {
+    position: relative;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg,transparent 0,#000 8%,#000 94%,transparent 100%);
+    mask-image: linear-gradient(90deg,transparent 0,#000 8%,#000 94%,transparent 100%);
+  }
+  .client-ribbon-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: sankalpMobileMarquee 18s linear infinite;
+  }
+  .client-ribbon-marquee-group,
+  .client-ribbon-marquee-group[aria-hidden="true"] {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 22px;
+    padding-right: 26px;
+  }
+  .client-ribbon-phone,
+  .client-ribbon-address {
+    flex: 0 0 auto;
+    min-width: max-content;
+    max-width: none;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
+    font-size: 9px;
+  }
+  .client-ribbon-address span { overflow: visible; text-overflow: clip; }
+  .client-ribbon-socials {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 6px;
+    padding-left: 7px;
+    background: var(--ink-deep);
+    box-shadow: -12px 0 18px rgba(7,27,46,.88);
+  }
+  .client-ribbon-social { width: 27px; height: 27px; }
+  .site-header { top: 36px !important; }
+
+  /* 2) Shared specification/category ribbons — seamless automatic ticker. */
+  .category-rail,
+  .about-intro-strip,
+  .infra-step-rail { overflow: hidden; }
+  .rail-inner,
+  .about-intro-strip-inner,
+  .infra-step-rail-inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+    overflow: hidden;
+  }
+  .mobile-ribbon-track {
+    display: flex;
+    width: max-content;
+    min-width: max-content;
+    will-change: transform;
+    animation: sankalpMobileMarquee 24s linear infinite;
+  }
+  .infra-step-rail-inner > .mobile-ribbon-track { animation-duration: 38s; }
+  .mobile-ribbon-group,
+  .mobile-ribbon-group[aria-hidden="true"] {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 14px;
+    padding-right: 28px;
+    white-space: nowrap;
+  }
+  .rail-inner .mobile-ribbon-group,
+  .about-intro-strip-inner .mobile-ribbon-group { min-height: 58px; }
+  .rail-inner .rail-label,
+  .about-intro-strip-inner .rail-label { margin-left: 18px; margin-right: 2px; }
+  .infra-step-rail-inner .mobile-ribbon-group { gap: 0; padding-right: 0; }
+  .infra-step-rail-inner .mobile-ribbon-group a { flex: 0 0 auto; }
+
+  /* Infrastructure hero specification badges also scroll instead of clipping. */
+  .infra-hero-badges {
+    position: relative;
+    display: block !important;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image: linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  }
+  .infra-hero-badges .mobile-ribbon-track { animation-duration: 18s; }
+  .infra-hero-badges .mobile-ribbon-group,
+  .infra-hero-badges .mobile-ribbon-group[aria-hidden="true"] { gap: 8px; padding-right: 8px; }
+  .infra-hero-badges .mobile-ribbon-group > span { flex: 0 0 auto; }
+
+  /* 3) Home hero — subtle blurred product visual behind the slogan, clear main visual stays below. */
+  .home-page .hero { background-image: none !important; background-color: var(--cream); }
+  .home-page .hero-copy {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: -10px -4px 0;
+    padding: 23px 18px 25px;
+    border: 1px solid rgba(255,255,255,.58);
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(7,27,46,.07);
+  }
+  .home-page .hero-copy::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: -28px;
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    background-position: 73% center;
+    background-size: auto 118%;
+    filter: blur(13px) saturate(.82);
+    transform: scale(1.08);
+    opacity: .29;
+  }
+  .home-page .hero-copy::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(115deg,rgba(247,240,230,.95) 0%,rgba(247,240,230,.82) 58%,rgba(255,253,249,.7) 100%);
+  }
+  .home-page .hero-mobile-visual { margin-top: 24px; }
+
+  /* 4) Premium Home promotion panel after collection cards. */
+  .home-promo { margin-top: 18px; padding: 25px 21px; gap: 19px; border-radius: 18px; }
+  .home-promo-heading { gap: 13px; }
+  .home-promo-heading > strong { font-size: 48px; }
+  .home-promo-heading h3 { font-size: 20px; }
+  .home-promo-copy p { font-size: 11px; }
+  .home-promo-proof { grid-template-columns: repeat(3,1fr); }
+  .home-promo-proof > div { padding: 13px 7px; }
+  .home-promo-proof strong { font-size: 16px; }
+  .home-promo-proof span { font-size: 6.4px; }
+  .home-promo-cta { width: 100%; justify-self: stretch; }
+
+  /* 6) More effective mobile floating quick actions. */
+  body .contact-dock,
+  body.products-page .contact-dock {
+    display: flex;
+    right: 10px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    gap: 7px;
+    z-index: 80;
+  }
+  body .contact-dock-item,
+  body.products-page .contact-dock-item {
+    width: auto;
+    min-width: 116px;
+    min-height: 48px;
+    padding: 5px 11px 5px 6px;
+    gap: 8px;
+    border-width: 1px;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(7,27,46,.2), 0 2px 5px rgba(7,27,46,.1);
+    font-size: 8px;
+    letter-spacing: .065em;
+    backdrop-filter: blur(10px);
+  }
+  body .contact-dock-item svg,
+  body.products-page .contact-dock-item svg {
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+    border-radius: 11px;
+    background: rgba(255,255,255,.15);
+  }
+  body .contact-dock-whatsapp svg,
+  body.products-page .contact-dock-whatsapp svg { padding: 6px; background: rgba(255,255,255,.17); }
+  body .contact-dock-location { background: linear-gradient(135deg,#102a43,#1c4b70); border-color: rgba(255,255,255,.18); }
+  body .contact-dock-call { color: #102a43; background: rgba(255,253,249,.96); border-color: #d7c8b5; }
+  body .contact-dock-call svg { background: #102a43; color: #fff; }
+  body .contact-dock-whatsapp { color: #fff; background: linear-gradient(135deg,#20b858,#25d366); border-color: rgba(255,255,255,.25); }
+  body .contact-dock-item:active { transform: scale(.96); }
+  body.dialog-open .contact-dock,
+  body.image-lightbox-open .contact-dock { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(12px) scale(.96); }
+}
+
+@media (max-width: 390px) {
+  .client-ribbon-inner { min-height: 34px; }
+  .site-header { top: 34px !important; }
+  .client-ribbon-phone svg,
+  .client-ribbon-address svg { display: inline-block; }
+  .home-page .hero-copy { padding-inline: 15px; }
+  body .contact-dock-item,
+  body.products-page .contact-dock-item { min-width: 108px; min-height: 45px; }
+  body .contact-dock-item svg,
+  body.products-page .contact-dock-item svg { width: 32px; height: 32px; }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .client-ribbon-marquee-track,
+  .mobile-ribbon-track { animation: none !important; }
+  .client-ribbon-marquee,
+  .rail-inner,
+  .about-intro-strip-inner,
+  .infra-step-rail-inner,
+  .infra-hero-badges { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
+/* Final mobile polish: make the blurred almirah art visible and show quick-action labels. */
+@media (max-width: 760px) {
+  .home-page .hero-copy::before {
+    background-position: 48% center;
+    background-size: auto 132%;
+    filter: blur(10px) saturate(.95);
+    opacity: .40;
+  }
+  .home-page .hero-copy::after {
+    background: linear-gradient(115deg,rgba(247,240,230,.90) 0%,rgba(247,240,230,.75) 58%,rgba(255,253,249,.66) 100%);
+  }
+  body .contact-dock-item span,
+  body.products-page .contact-dock-item span {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
+    border: 0;
+  }
+}
+@media (max-width: 760px) {
+  .home-page .hero-copy::before { opacity: .64; filter: blur(12px) saturate(1.05); }
+  .home-page .hero-copy::after { background: linear-gradient(115deg,rgba(247,240,230,.77) 0%,rgba(247,240,230,.60) 58%,rgba(255,253,249,.57) 100%); }
+}

@@ -183,12 +183,19 @@
 </article></div><div class="catalog-empty" data-empty="" hidden=""><strong>No matching products.</strong><span>Try another search or category.</span></div></section>
 </main>
 <div aria-labelledby="product-dialog-title" aria-modal="true" class="catalog-dialog" data-dialog="" hidden="" role="dialog"><div class="catalog-dialog-shell"><button aria-label="Close product details" class="catalog-dialog-close" data-dialog-close="" type="button">×</button><div class="catalog-dialog-media">
-<div class="catalog-gallery-stage"><img alt="" data-dialog-image=""/></div>
+<div class="catalog-gallery-stage" data-image-open=""><img alt="" data-dialog-image=""/><span class="catalog-image-open-hint" aria-hidden="true">Tap image to enlarge</span></div>
 <div class="catalog-gallery-switch" data-gallery-switch="" hidden="">
 <button class="catalog-gallery-thumb active" data-gallery-view="studio" type="button"><span class="catalog-gallery-thumb-image"><img alt="" data-gallery-studio-thumb=""/></span><span>Studio view</span></button>
 <button class="catalog-gallery-thumb" data-gallery-view="spec" type="button"><span class="catalog-gallery-thumb-image"><img alt="" data-gallery-spec-thumb=""/></span><span>Specifications</span></button>
 </div>
 </div><div class="catalog-dialog-info"><span class="catalog-dialog-label">PRODUCT DETAILS</span><h2 data-dialog-name="" id="product-dialog-title"></h2><p class="catalog-dialog-hint">Switch between the studio view and specifications, then enquire directly on WhatsApp.</p><div class="catalog-dialog-size" data-dialog-size=""></div><p data-dialog-desc=""></p><div class="catalog-detail-rule"></div><h3>Product details</h3><ul data-dialog-features=""></ul><div class="catalog-dialog-actions"><a class="catalog-whatsapp-btn" data-dialog-whatsapp="" href="https://wa.me/917696952500" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewbox="0 0 32 32"><path d="M16.1 3C9 3 3.2 8.7 3.2 15.8c0 2.2.6 4.4 1.7 6.3L3 29l7-1.8c1.8 1 3.9 1.5 6.1 1.5 7.1 0 12.9-5.7 12.9-12.8S23.2 3 16.1 3Zm0 23.5c-2 0-3.9-.5-5.5-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4a10.5 10.5 0 0 1-1.6-5.6c0-5.9 4.8-10.7 10.8-10.7 2.9 0 5.6 1.1 7.6 3.1a10.6 10.6 0 0 1 3.2 7.6c0 5.8-4.8 10.6-10.8 10.6Z"></path></svg>Send enquiry on WhatsApp</a><a class="catalog-call-btn" href="tel:+917696952500">Call now</a></div></div></div></div>
+<div class="catalog-image-lightbox" data-image-lightbox="" hidden="" role="dialog" aria-modal="true" aria-label="Full-screen product image">
+  <button class="catalog-image-lightbox-close" data-image-lightbox-close="" type="button" aria-label="Close full-screen image">×</button>
+  <div class="catalog-image-lightbox-stage">
+    <img alt="" data-image-lightbox-img=""/>
+  </div>
+  <span class="catalog-image-lightbox-note">Pinch to zoom · Tap outside to close</span>
+</div>
 <footer class="site-footer client-footer">
 <div class="container client-footer-grid">
 <section aria-label="SANKALP by Jesan Steel Works" class="client-footer-brand">
@@ -243,6 +250,11 @@
   const empty = document.querySelector('[data-empty]');
   const modal = document.querySelector('[data-dialog]');
   const closeBtn = document.querySelector('[data-dialog-close]');
+  const imageStage = document.querySelector('[data-image-open]');
+  const imageLightbox = document.querySelector('[data-image-lightbox]');
+  const imageLightboxImg = document.querySelector('[data-image-lightbox-img]');
+  const imageLightboxClose = document.querySelector('[data-image-lightbox-close]');
+  const mobileImageQuery = window.matchMedia('(max-width: 720px)');
   let activeCategory = 'All';
   const requestedCategory = new URLSearchParams(window.location.search).get('category');
   if (requestedCategory && ["Almirahs","Racks","Wall Fixing","Drying Stands","Ladders","Utility Racks","Organizers","Tables","Cots"].includes(requestedCategory)) {
@@ -368,8 +380,28 @@
     closeBtn && closeBtn.focus({preventScroll:true});
   }
 
+  function closeImageLightbox(){
+    if(!imageLightbox || imageLightbox.hidden) return;
+    imageLightbox.classList.remove('is-open');
+    imageLightbox.hidden = true;
+    document.body.classList.remove('image-lightbox-open');
+  }
+
+  function openImageLightbox(){
+    if(!mobileImageQuery.matches || !imageLightbox || !imageLightboxImg || !modal || modal.hidden) return;
+    const main = modal.querySelector('[data-dialog-image]');
+    if(!main || !main.src) return;
+    imageLightboxImg.src = main.src;
+    imageLightboxImg.alt = main.alt || 'Product image';
+    imageLightbox.hidden = false;
+    imageLightbox.classList.add('is-open');
+    document.body.classList.add('image-lightbox-open');
+    imageLightboxClose && imageLightboxClose.focus({preventScroll:true});
+  }
+
   function closeProduct(){
     if(!modal || modal.hidden) return;
+    closeImageLightbox();
     modal.classList.remove('is-open');
     modal.hidden = true;
     document.body.classList.remove('dialog-open');
@@ -415,6 +447,17 @@
   });
   if(sort) sort.addEventListener('change', function(){ sortCards(); applyFilters(); });
   if(closeBtn) closeBtn.addEventListener('click', closeProduct);
+  if(imageStage){
+    imageStage.addEventListener('click', openImageLightbox);
+    imageStage.addEventListener('keydown', function(event){
+      if(!mobileImageQuery.matches) return;
+      if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); openImageLightbox(); }
+    });
+  }
+  if(imageLightboxClose) imageLightboxClose.addEventListener('click', closeImageLightbox);
+  if(imageLightbox){
+    imageLightbox.addEventListener('click', function(event){ if(event.target === imageLightbox) closeImageLightbox(); });
+  }
   if(modal){
     modal.querySelectorAll('[data-gallery-view]').forEach(function(button){
       button.addEventListener('click', function(event){ event.stopPropagation(); setGallery(button.dataset.galleryView); });
@@ -422,6 +465,7 @@
     modal.addEventListener('click', function(event){ if(event.target === modal) closeProduct(); });
   }
   document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape' && imageLightbox && !imageLightbox.hidden){ closeImageLightbox(); return; }
     if(event.key === 'Escape' && modal && !modal.hidden){ closeProduct(); return; }
     if(event.key === '/' && document.activeElement !== search && modal && modal.hidden){ event.preventDefault(); search && search.focus(); }
   });
