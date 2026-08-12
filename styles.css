@@ -3697,17 +3697,63 @@ body.products-page .contact-dock-whatsapp {
   .home-page .hero-furniture-cue-third { width: 61px; height: 96px; }
 }
 
-
 /* =========================================================
-   MOBILE HERO REFINEMENT — 2026-08-12 (late update)
-   - Put furniture visuals behind the headline, not in a bottom box
-   - Change mobile hero headline font to a more classic editorial serif
+   MOBILE FULL-HERO FURNITURE BACKDROP — 2026-08-12
+   Mobile only: previous typography + blurred furniture collage
+   across the entire hero card. Desktop/laptop unchanged.
    ========================================================= */
 @media (max-width: 760px) {
   .home-page .hero-copy {
     position: relative;
     isolation: isolate;
-    padding-right: 16px;
+    overflow: hidden;
+  }
+
+  /* Furniture collage fills the COMPLETE mobile hero card. */
+  .home-page .hero-copy::before {
+    content: "" !important;
+    display: block !important;
+    position: absolute;
+    z-index: 0;
+    inset: -14px;
+    pointer-events: none;
+    opacity: .24;
+    filter: blur(7px) saturate(.84);
+    transform: scale(1.045);
+    transform-origin: center;
+    background-image:
+      url('assets/images/product-cutout-almirah.webp'),
+      url('assets/images/product-cutout-locker.webp'),
+      url('assets/images/product-cutout-cabinet.webp'),
+      url('assets/images/product-cutout-almirah.webp');
+    background-repeat: no-repeat;
+    background-position:
+      92% 5%,
+      10% 43%,
+      88% 67%,
+      22% 98%;
+    background-size:
+      42% auto,
+      34% auto,
+      38% auto,
+      31% auto;
+  }
+
+  /* Cream wash keeps the typography clear while retaining furniture cues. */
+  .home-page .hero-copy::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(255,250,244,.90) 0%,
+        rgba(255,250,244,.78) 42%,
+        rgba(255,250,244,.66) 100%),
+      linear-gradient(180deg,
+        rgba(255,255,255,.24) 0%,
+        rgba(247,237,225,.28) 100%);
   }
 
   .home-page .hero-company-name,
@@ -3718,119 +3764,55 @@ body.products-page .contact-dock-whatsapp {
     z-index: 2;
   }
 
+  /* Keep the previous approved hero typography. */
   .home-page .hero-copy h1 {
-    max-width: 75%;
-    font-family: "Baskerville", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-    font-size: clamp(43px, 12.8vw, 58px);
+    max-width: 650px;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 13.6vw, 61px);
     font-weight: 700;
-    line-height: .92;
-    letter-spacing: -.05em;
-    text-wrap: initial;
+    line-height: .98;
+    letter-spacing: -.043em;
+    text-wrap: balance;
   }
 
   .home-page .hero-copy h1 em {
-    display: inline-block;
-    font-family: "Baskerville", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
     font-style: italic;
     font-weight: 600;
-    letter-spacing: -.04em;
+    letter-spacing: -.037em;
   }
 
-  .home-page .hero-copy > p {
-    max-width: 100%;
-    padding-right: 8px;
-  }
-
+  /* No separate furniture strip below the copy. */
   .home-page .hero-furniture-cue {
-    position: absolute;
-    top: 78px;
-    right: 4px;
-    z-index: 1;
-    display: block;
-    width: 42%;
-    min-height: 0;
-    height: 285px;
-    margin: 0;
-    overflow: visible;
-    border: 0;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-  }
-
-  .home-page .hero-furniture-cue::before,
-  .home-page .hero-furniture-cue-copy {
     display: none !important;
-    content: none !important;
-  }
-
-  .home-page .hero-furniture-cue-stage {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  .home-page .hero-furniture-cue-stage img {
-    bottom: auto;
-    filter: drop-shadow(0 14px 18px rgba(7,27,46,.12));
-    opacity: .25;
-    mix-blend-mode: multiply;
-  }
-
-  .home-page .hero-furniture-cue-main {
-    left: 30%;
-    top: 70px;
-    width: 88px;
-    height: 164px;
-  }
-
-  .home-page .hero-furniture-cue-secondary {
-    left: -2%;
-    top: 122px;
-    width: 80px;
-    height: 118px;
-  }
-
-  .home-page .hero-furniture-cue-third {
-    right: -2%;
-    top: 10px;
-    width: 76px;
-    height: 142px;
   }
 }
 
 @media (max-width: 390px) {
-  .home-page .hero-copy h1 {
-    max-width: 74%;
-    font-size: clamp(39px, 12.2vw, 50px);
+  .home-page .hero-copy::before {
+    inset: -12px;
+    opacity: .22;
+    filter: blur(7.5px) saturate(.82);
+    background-position:
+      94% 5%,
+      5% 42%,
+      92% 69%,
+      18% 98%;
+    background-size:
+      44% auto,
+      36% auto,
+      40% auto,
+      33% auto;
   }
 
-  .home-page .hero-furniture-cue {
-    top: 84px;
-    right: 0;
-    width: 43%;
-    height: 260px;
-  }
-
-  .home-page .hero-furniture-cue-main {
-    left: 28%;
-    top: 72px;
-    width: 81px;
-    height: 151px;
-  }
-
-  .home-page .hero-furniture-cue-secondary {
-    left: -4%;
-    top: 124px;
-    width: 74px;
-    height: 110px;
-  }
-
-  .home-page .hero-furniture-cue-third {
-    right: -4%;
-    top: 14px;
-    width: 70px;
-    height: 132px;
+  .home-page .hero-copy::after {
+    background:
+      linear-gradient(90deg,
+        rgba(255,250,244,.91) 0%,
+        rgba(255,250,244,.79) 45%,
+        rgba(255,250,244,.68) 100%),
+      linear-gradient(180deg,
+        rgba(255,255,255,.22),
+        rgba(247,237,225,.30));
   }
 }
